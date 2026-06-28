@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anna Bezel — UI/UX Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:             #F9F9F7;
+      --surface:        #FFFFFF;
+      --text:           #111111;
+      --text-secondary: #888888;
+      --border:         #E5E5E5;
+      --overlay:        rgba(0, 0, 0, 0.55);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    /* ─── BACKGROUND LINES ──────────────────────────────── */
+    .bg-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 520px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header, nav, main, footer, hr {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── HERO ──────────────────────────────────────────── */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 60px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+
+    .hero .subtitle {
+      margin-top: 18px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 24px;
+    }
+
+    /* ─── CONTACT ───────────────────────────────────────── */
+    .contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 48px;
+      padding: 32px 24px;
+      background: #EFEFED;
+    }
+
+    .contact a {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      min-height: 44px;
+      transition: color 0.2s ease;
+    }
+
+    .contact a:hover { color: var(--text-secondary); }
+
+    .contact svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* ─── PORTFOLIO ─────────────────────────────────────── */
+    .portfolio {
+      padding: 52px 24px 88px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .portfolio-heading {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+      aspect-ratio: 4 / 3;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(100%);
+      transform: scale(1.1);
+      transition: transform 0.5s ease, filter 0.5s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1);
+      filter: grayscale(0%);
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover .card-overlay {
+      opacity: 0;
+    }
+
+    .card-name {
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.52);
+      padding: 10px 16px;
+      width: 100%;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── MOBILE ────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .hero { padding: 56px 24px 44px; }
+
+      .contact {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 24px 28px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+      }
+
+      .card { aspect-ratio: 1 / 1; }
+
+      .card-name {
+        font-size: 10px;
+        letter-spacing: 0.05em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BACKGROUND LINES -->
+  <svg class="bg-lines" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <line x1="0" y1="0" x2="50%" y2="100%" stroke="#DDDDD9" stroke-width="1"/>
+    <line x1="100%" y1="0" x2="50%" y2="100%" stroke="#DDDDD9" stroke-width="1"/>
+  </svg>
+
+  <!-- HERO -->
+  <header class="hero">
+    <h1>Anna Bezel</h1>
+    <p class="subtitle">UI/UX &amp; Graphic Designer</p>
+    <p class="subtitle" style="margin-top:8px;">Tucson, AZ &#x1F335;</p>
+  </header>
+
+  <hr class="divider">
+
+  <!-- CONTACT -->
+  <nav class="contact" aria-label="Contact">
+    <a href="mailto:anna.bezel.dev@gmail.com">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <polyline points="2,4 12,13 22,4"/>
+      </svg>
+      anna.bezel.dev@gmail.com
+    </a>
+    <a href="#cv-download">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7,10 12,15 17,10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download CV
+    </a>
+  </nav>
+
+  <hr class="divider">
+
+  <!-- PORTFOLIO -->
+  <main class="portfolio">
+    <p class="portfolio-heading">Portfolio</p>
+    <div class="grid">
+      <div class="card">
+        <img src="Projects/4.jpg" alt="SuperCar" loading="lazy">
+        <div class="card-overlay"><span class="card-name">SuperCar</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/3.jpg" alt="Driving Technologies" loading="lazy">
+        <div class="card-overlay"><span class="card-name">Driving Technologies</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/12.jpg" alt="OzirisDev" loading="lazy">
+        <div class="card-overlay"><span class="card-name">OzirisDev</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/5.jpg" alt="NeoBankside" loading="lazy">
+        <div class="card-overlay"><span class="card-name">NeoBankside</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/6.jpg" alt="SolutionUnion" loading="lazy">
+        <div class="card-overlay"><span class="card-name">SolutionUnion</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/7.jpg" alt="Fulham Reach" loading="lazy">
+        <div class="card-overlay"><span class="card-name">Fulham Reach</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/8.jpg" alt="EdBacker" loading="lazy">
+        <div class="card-overlay"><span class="card-name">EdBacker</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/9.jpg" alt="Personal Trainers" loading="lazy">
+        <div class="card-overlay"><span class="card-name">Personal Trainers</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/10.jpg" alt="KnowledgeThroughData" loading="lazy">
+        <div class="card-overlay"><span class="card-name">KnowledgeThroughData</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/11.jpg" alt="SnapScore" loading="lazy">
+        <div class="card-overlay"><span class="card-name">SnapScore</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/13.jpg" alt="USawMe" loading="lazy">
+        <div class="card-overlay"><span class="card-name">USawMe</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/14.jpg" alt="Refer-A-Ride" loading="lazy">
+        <div class="card-overlay"><span class="card-name">Refer-A-Ride</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/15.jpg" alt="Game Portal" loading="lazy">
+        <div class="card-overlay"><span class="card-name">Game Portal</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/16.jpg" alt="Garage Sale" loading="lazy">
+        <div class="card-overlay"><span class="card-name">Garage Sale</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/17.jpg" alt="Chicken Case" loading="lazy">
+        <div class="card-overlay"><span class="card-name">Chicken Case</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/18.jpg" alt="Mad Laboratory" loading="lazy">
+        <div class="card-overlay"><span class="card-name">Mad Laboratory</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/19.jpg" alt="SixFoot" loading="lazy">
+        <div class="card-overlay"><span class="card-name">SixFoot</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/20.jpg" alt="Nationwidemsi System" loading="lazy">
+        <div class="card-overlay"><span class="card-name">Nationwidemsi System</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/1.jpg" alt="GearHost" loading="lazy">
+        <div class="card-overlay"><span class="card-name">GearHost</span></div>
+      </div>
+      <div class="card">
+        <img src="Projects/2.jpg" alt="Happy Data" loading="lazy">
+        <div class="card-overlay"><span class="card-name">Happy Data</span></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2026 Anna Bezel
+  </footer>
+
+</body>
+</html>
