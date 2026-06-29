@@ -43,6 +43,13 @@
       z-index: 1;
     }
 
+    .sticky-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+    }
+
     /* ─── HERO ──────────────────────────────────────────── */
     .hero {
       text-align: center;
@@ -79,7 +86,7 @@
       align-items: center;
       gap: 48px;
       padding: 32px 24px;
-      background: #EFEFED;
+      background: #FFFFFF;
     }
 
     .contact a {
@@ -228,28 +235,30 @@
     <p class="subtitle" style="margin-top:8px;">Tucson, AZ &#x1F335;</p>
   </header>
 
-  <hr class="divider">
+  <div class="sticky-bar">
+    <hr class="divider">
 
-  <!-- CONTACT -->
-  <nav class="contact" aria-label="Contact">
-    <a href="mailto:anna.bezel.dev@gmail.com">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="2" y="4" width="20" height="16" rx="2"/>
-        <polyline points="2,4 12,13 22,4"/>
-      </svg>
-      anna.bezel.dev@gmail.com
-    </a>
-    <a href="#cv-download">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-        <polyline points="7,10 12,15 17,10"/>
-        <line x1="12" y1="15" x2="12" y2="3"/>
-      </svg>
-      Download CV
-    </a>
-  </nav>
+    <!-- CONTACT -->
+    <nav class="contact" aria-label="Contact">
+      <a href="mailto:anna.bezel.dev@gmail.com">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <polyline points="2,4 12,13 22,4"/>
+        </svg>
+        anna.bezel.dev@gmail.com
+      </a>
+      <a href="#cv-download">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7,10 12,15 17,10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download CV
+      </a>
+    </nav>
 
-  <hr class="divider">
+    <hr class="divider">
+  </div>
 
   <!-- PORTFOLIO -->
   <main class="portfolio">
